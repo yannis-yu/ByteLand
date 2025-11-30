@@ -103,7 +103,7 @@ export default function Home() {
               <p className="text-slate-600">Innovations we are bringing to the world.</p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* JulesGo Card */}
               <motion.div 
                 whileHover={{ y: -5 }}
@@ -184,6 +184,47 @@ export default function Home() {
                   <Link 
                     to="/seelist" 
                     className="block w-full py-3 rounded-lg border-2 border-slate-200 text-slate-600 font-bold hover:border-rgb-blue hover:text-rgb-blue transition-colors text-center"
+                  >
+                    Learn More
+                  </Link>
+                </div>
+              </motion.div>
+
+              {/* JoyDex Card */}
+              <motion.div 
+                whileHover={{ y: -5 }}
+                className="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-200 flex flex-col relative group"
+              >
+                {/* Tri-color Accent Border */}
+                <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-tri"></div>
+                <div className="h-48 bg-slate-900 flex items-center justify-center relative overflow-hidden">
+                   {/* Background Effect */}
+                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-red-900 to-slate-900 opacity-50"></div>
+                  {/* JoyDex Icon */}
+                  <img src="/assets/images/joydex-icon.svg" alt="JoyDex Icon" className="w-24 h-24 drop-shadow-lg relative z-10" />
+                </div>
+                <div className="p-8 flex-1 flex flex-col">
+                  <div className="flex items-center gap-3 mb-4">
+                    <h3 className="text-2xl font-extrabold tracking-tight font-brand text-gradient-tri">JoyDex</h3>
+                    <span className="px-2.5 py-0.5 rounded-full bg-red-100 text-red-600 text-xs font-bold">New</span>
+                  </div>
+                  <p className="text-slate-600 mb-6 flex-1">
+                    The ultimate companion for Pokémon trainers. Comprehensive database, team builder, and a joyful interface to track your journey.
+                  </p>
+                  <ul className="space-y-2 mb-8 text-sm text-slate-600">
+                    <li className="flex items-center gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-rgb-red"></div>
+                      Gen 1-9 Complete Data
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-rgb-red"></div>
+                      Smart Team Builder
+                    </li>
+
+                  </ul>
+                  <Link 
+                    to="/joydex" 
+                    className="block w-full py-3 rounded-lg border-2 border-rgb-red text-rgb-red font-bold hover:bg-rgb-red hover:text-white transition-colors text-center"
                   >
                     Learn More
                   </Link>
