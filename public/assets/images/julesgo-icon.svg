@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <defs>
+    <style>
+      .eye-pupil { animation: look-around 4s infinite; }
+      @keyframes look-around {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-4px); }
+        75% { transform: translateX(4px); }
+      }
+    </style>
+  </defs>
+
+  <!-- The Ghost Container -->
+  <g transform="translate(10, 10)">
+    <!-- Float Animation -->
+    <animateTransform 
+      attributeName="transform" 
+      type="translate" 
+      values="0 0; 0 -6; 0 0" 
+      dur="3s" 
+      repeatCount="indefinite" 
+    />
+
+    <!-- Left Section (Red) -->
+    <path fill="#007AFF">
+      <animate attributeName="d" 
+        values="M 40 12 L 40 80 Q 30 90 20 80 L 20 40 A 30 30 0 0 1 40 12 Z;
+                M 40 12 L 40 85 Q 30 75 20 85 L 20 40 A 30 30 0 0 1 40 12 Z;
+                M 40 12 L 40 80 Q 30 90 20 80 L 20 40 A 30 30 0 0 1 40 12 Z" 
+        dur="1.2s" repeatCount="indefinite"/>
+    </path>
+
+    <!-- Middle Section (Green) - Perfectly aligned -->
+    <path fill="#34C759">
+      <animate attributeName="d" 
+        values="M 60 12 L 60 80 Q 50 90 40 80 L 40 12 A 30 30 0 0 1 60 12 Z;
+                M 60 12 L 60 85 Q 50 75 40 85 L 40 12 A 30 30 0 0 1 60 12 Z;
+                M 60 12 L 60 80 Q 50 90 40 80 L 40 12 A 30 30 0 0 1 60 12 Z" 
+        dur="1.2s" begin="0.2s" repeatCount="indefinite"/>
+    </path>
+
+    <!-- Right Section (Blue) -->
+    <path fill="#FF3B30">
+      <animate attributeName="d" 
+        values="M 80 40 L 80 80 Q 70 90 60 80 L 60 12 A 30 30 0 0 1 80 40 Z;
+                M 80 40 L 80 85 Q 70 75 60 85 L 60 12 A 30 30 0 0 1 80 40 Z;
+                M 80 40 L 80 80 Q 70 90 60 80 L 60 12 A 30 30 0 0 1 80 40 Z" 
+        dur="1.2s" begin="0.4s" repeatCount="indefinite"/>
+    </path>
+
+    <!-- Eyes -->
+    <g transform="translate(0, 5)">
+      <!-- Left Eye -->
+      <circle cx="35" cy="40" r="8" fill="white" />
+      <circle cx="37" cy="40" r="3" fill="#0F172A" class="eye-pupil" />
+
+      <!-- Right Eye -->
+      <circle cx="65" cy="40" r="8" fill="white" />
+      <circle cx="67" cy="40" r="3" fill="#0F172A" class="eye-pupil" />
+    </g>
+  </g>
+</svg>
