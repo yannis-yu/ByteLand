@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <!-- Rounded Play Button Shape for Clipping -->
+    <clipPath id="play-button-clip">
+      <path d="M 35 20 L 85 50 L 35 80 A 5 5 0 0 1 28 75 L 28 25 A 5 5 0 0 1 35 20 Z" />
+    </clipPath>
+  </defs>
+
+  <!-- Floating Animation Wrapper -->
+  <g>
+    <animateTransform attributeName="transform" type="translate" values="0 0; 0 -4; 0 0" dur="3s"
+      repeatCount="indefinite" />
+
+    <!-- Main Group with Clip Path -->
+    <g clip-path="url(#play-button-clip)">
+
+      <!-- Background (Bottom - Red) -->
+      <rect x="0" y="0" width="100" height="100" fill="#FF3B30" />
+
+      <!-- Middle Layer (Green) -->
+      <path fill="#34C759">
+        <animate attributeName="d" values="M 0 60 Q 25 55 50 60 T 100 60 V 0 H 0 Z;
+                  M 0 60 Q 25 65 50 60 T 100 60 V 0 H 0 Z;
+                  M 0 60 Q 25 55 50 60 T 100 60 V 0 H 0 Z" dur="2s" repeatCount="indefinite" />
+      </path>
+
+      <!-- Top Layer (Blue) -->
+      <path fill="#007AFF">
+        <animate attributeName="d" values="M 0 35 Q 25 40 50 35 T 100 35 V 0 H 0 Z;
+                  M 0 35 Q 25 30 50 35 T 100 35 V 0 H 0 Z;
+                  M 0 35 Q 25 40 50 35 T 100 35 V 0 H 0 Z" dur="2.5s" repeatCount="indefinite" />
+      </path>
+
+      <!-- Shine/Gloss Effect (Optional, subtle overlay) -->
+      <path d="M 0 0 L 100 0 L 100 100 Z" fill="white" opacity="0.1" />
+    </g>
+
+    <!-- Outline (Optional, to define shape better on white backgrounds) -->
+    <path d="M 35 20 L 85 50 L 35 80 A 5 5 0 0 1 28 75 L 28 25 A 5 5 0 0 1 35 20 Z" fill="none" stroke="rgba(0,0,0,0.1)"
+      stroke-width="2" />
+  </g>
+</svg>

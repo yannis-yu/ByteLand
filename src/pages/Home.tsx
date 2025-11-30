@@ -146,16 +146,49 @@ export default function Home() {
                 </div>
               </motion.div>
 
-              {/* Coming Soon Card */}
-              <div className="bg-white/50 rounded-2xl border-2 border-dashed border-slate-300 flex flex-col items-center justify-center p-8 text-center min-h-[400px]">
-                <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mb-4 text-slate-400">
-                  <Code className="w-8 h-8" />
+              {/* SeeList Card */}
+              <motion.div 
+                whileHover={{ y: -5 }}
+                className="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-200 flex flex-col relative group"
+              >
+                {/* Tri-color Accent Border */}
+                <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-tri"></div>
+                <div className="h-48 bg-slate-900 flex items-center justify-center relative overflow-hidden">
+                  {/* Background Effect */}
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-slate-800 to-slate-900"></div>
+                  {/* SeeList Icon */}
+                  <img src="/assets/images/seelist-icon.svg" alt="SeeList Icon" className="w-24 h-24 drop-shadow-lg relative z-10" />
                 </div>
-                <h3 className="text-xl font-bold text-slate-500 mb-2">Coming Soon</h3>
-                <p className="text-slate-400 max-w-xs">
-                  From real-time transport info to lifestyle utilities, we are brewing new apps to make your day easier. Stay tuned!
-                </p>
-              </div>
+                <div className="p-8 flex-1 flex flex-col">
+                  <div className="flex items-center gap-3 mb-4">
+                    <h3 className="text-2xl font-extrabold tracking-tight font-brand text-gradient-tri">SeeList</h3>
+                    <span className="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 text-xs font-bold">Coming Soon</span>
+                  </div>
+                  <p className="text-slate-600 mb-6 flex-1">
+                    Your personal movie and TV show tracker. Browse the TMDB library, watch trailers, and manage your watchlist with your own API key.
+                  </p>
+                  <ul className="space-y-2 mb-8 text-sm text-slate-600">
+                    <li className="flex items-center gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-rgb-blue"></div>
+                      Powered by TMDB API
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-rgb-blue"></div>
+                      Watch Trailers
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-rgb-blue"></div>
+                      Local Favorites Collection
+                    </li>
+                  </ul>
+                  <Link 
+                    to="/seelist" 
+                    className="block w-full py-3 rounded-lg border-2 border-slate-200 text-slate-600 font-bold hover:border-rgb-blue hover:text-rgb-blue transition-colors text-center"
+                  >
+                    Learn More
+                  </Link>
+                </div>
+              </motion.div>
             </div>
           </div>
         </section>

@@ -1,1 +1,1 @@
-{"root":["./src/app.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/pages/home.tsx","./src/pages/julesgo.tsx"],"version":"5.9.3"}
+{"root":["./src/app.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/components/scrolltotop.tsx","./src/pages/home.tsx","./src/pages/julesgo.tsx","./src/pages/seelist.tsx"],"version":"5.9.3"}
