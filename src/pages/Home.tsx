@@ -8,10 +8,17 @@ export default function Home() {
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md z-50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-          <div className="flex items-center gap-2">
-            <img src="/assets/images/logo.svg" alt="ByteLand Logo" className="h-8 w-auto" />
+          <button 
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="flex items-center gap-2 group"
+          >
+            <img 
+              src="/assets/images/logo.svg" 
+              alt="ByteLand Logo" 
+              className="h-8 w-auto transition-transform duration-200 group-hover:scale-110" 
+            />
             <span className="text-2xl font-extrabold tracking-tight font-brand text-gradient-tri">ByteLand</span>
-          </div>
+          </button>
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
             <a href="#home" className="hover:text-slate-900 transition-colors">Home</a>
             <a href="#about" className="hover:text-slate-900 transition-colors">About</a>
@@ -111,9 +118,14 @@ export default function Home() {
               >
                 {/* Tri-color Accent Border */}
                 <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-tri"></div>
-                <div className="h-48 bg-slate-900 flex items-center justify-center">
+                <div className="h-48 relative overflow-hidden flex items-center justify-center">
+                  {/* Grid Background */}
+                  <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
+                  {/* Animated Blobs */}
+                  <div className="absolute top-0 left-1/4 w-32 h-32 bg-rgb-blue/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-[blob_10s_infinite]"></div>
+                  <div className="absolute top-0 right-1/4 w-32 h-32 bg-rgb-green/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-[blob_10s_infinite_2s]"></div>
                   {/* JulesGo Animated Icon */}
-                  <img src="/assets/images/julesgo-icon.svg" alt="Jules GO Ghost" className="w-24 h-24 drop-shadow-lg" />
+                  <img src="/assets/images/julesgo-icon.svg" alt="Jules GO Ghost" className="w-24 h-24 drop-shadow-lg relative z-10 transition-transform duration-300 group-hover:scale-110" />
                 </div>
                 <div className="p-8 flex-1 flex flex-col">
                   <div className="flex items-center gap-3 mb-4">
@@ -153,11 +165,14 @@ export default function Home() {
               >
                 {/* Tri-color Accent Border */}
                 <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-tri"></div>
-                <div className="h-48 bg-slate-900 flex items-center justify-center relative overflow-hidden">
-                  {/* Background Effect */}
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-slate-800 to-slate-900"></div>
+                <div className="h-48 relative overflow-hidden flex items-center justify-center">
+                  {/* Grid Background */}
+                  <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
+                  {/* Animated Blobs */}
+                  <div className="absolute -bottom-8 left-1/3 w-32 h-32 bg-rgb-blue/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-[blob_10s_infinite_4s]"></div>
+                  <div className="absolute top-0 right-1/4 w-32 h-32 bg-rgb-red/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-[blob_10s_infinite]"></div>
                   {/* SeeList Icon */}
-                  <img src="/assets/images/seelist-icon.svg" alt="SeeList Icon" className="w-24 h-24 drop-shadow-lg relative z-10" />
+                  <img src="/assets/images/seelist-icon.svg" alt="SeeList Icon" className="w-24 h-24 drop-shadow-lg relative z-10 transition-transform duration-300 group-hover:scale-110" />
                 </div>
                 <div className="p-8 flex-1 flex flex-col">
                   <div className="flex items-center gap-3 mb-4">
@@ -197,11 +212,14 @@ export default function Home() {
               >
                 {/* Tri-color Accent Border */}
                 <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-tri"></div>
-                <div className="h-48 bg-slate-900 flex items-center justify-center relative overflow-hidden">
-                   {/* Background Effect */}
-                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-red-900 to-slate-900 opacity-50"></div>
+                <div className="h-48 relative overflow-hidden flex items-center justify-center">
+                  {/* Grid Background */}
+                  <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
+                  {/* Animated Blobs */}
+                  <div className="absolute top-0 left-1/4 w-32 h-32 bg-rgb-red/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-[blob_10s_infinite]"></div>
+                  <div className="absolute -bottom-8 right-1/4 w-32 h-32 bg-rgb-green/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-[blob_10s_infinite_2s]"></div>
                   {/* JoyDex Icon */}
-                  <img src="/assets/images/joydex-icon.svg" alt="JoyDex Icon" className="w-24 h-24 drop-shadow-lg relative z-10" />
+                  <img src="/assets/images/joydex-icon.svg" alt="JoyDex Icon" className="w-24 h-24 drop-shadow-lg relative z-10 transition-transform duration-300 group-hover:scale-110" />
                 </div>
                 <div className="p-8 flex-1 flex flex-col">
                   <div className="flex items-center gap-3 mb-4">

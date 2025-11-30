@@ -8,18 +8,28 @@ export default function SeeList() {
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md z-50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-          <Link to="/" className="flex items-center gap-2 group">
-            <img src="/assets/images/seelist-icon.svg" alt="SeeList Icon" className="h-8 w-auto group-hover:scale-110 transition-transform" />
+          <button 
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="flex items-center gap-2 group"
+          >
+            <img 
+              src="/assets/images/seelist-icon.svg" 
+              alt="SeeList Icon" 
+              className="h-8 w-auto transition-transform duration-200 group-hover:scale-110" 
+            />
             <span className="text-2xl font-extrabold tracking-tight font-brand text-gradient-tri">SeeList</span>
+          </button>
+          <Link 
+            to="/" 
+            className="group"
+            title="Back to ByteLand"
+          >
+            <img 
+              src="/assets/images/logo.svg" 
+              alt="ByteLand Logo" 
+              className="h-8 w-auto transition-transform duration-200 group-hover:scale-110" 
+            />
           </Link>
-          <div className="flex items-center gap-4">
-            <a 
-              href="#" 
-              className="inline-flex items-center px-5 py-2 rounded-full bg-slate-900 text-white font-medium hover:bg-slate-800 transition-colors text-sm"
-            >
-              Coming Soon
-            </a>
-          </div>
         </div>
       </header>
 

@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const JoyDex = () => {
   useEffect(() => {
@@ -11,11 +12,28 @@ const JoyDex = () => {
       <nav className="fixed w-full bg-white/80 backdrop-blur-md z-50 border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <div className="flex items-center gap-2">
-              <img src="/assets/images/joydex-icon.svg" alt="JoyDex" className="w-8 h-8" />
+            <button 
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="flex items-center gap-2 group"
+            >
+              <img 
+                src="/assets/images/joydex-icon.svg" 
+                alt="JoyDex" 
+                className="w-8 h-8 transition-transform duration-200 group-hover:scale-110" 
+              />
               <span className="font-bold text-xl text-gradient-tri">JoyDex</span>
-            </div>
-            <a href="/" className="text-gray-500 hover:text-gray-900 transition-colors">Back to ByteLand</a>
+            </button>
+            <Link 
+              to="/" 
+              className="group"
+              title="Back to ByteLand"
+            >
+              <img 
+                src="/assets/images/logo.svg" 
+                alt="ByteLand Logo" 
+                className="h-8 w-auto transition-transform duration-200 group-hover:scale-110" 
+              />
+            </Link>
           </div>
         </div>
       </nav>
