@@ -146,7 +146,7 @@ export default function Home() {
                     </li>
                     <li className="flex items-center gap-2">
                       <div className="w-1.5 h-1.5 rounded-full bg-rgb-green"></div>
-                      Cross-platform (Android & iOS)
+                      PWA Available (Mobile Apps Coming Soon)
                     </li>
                   </ul>
                   <Link 

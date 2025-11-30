@@ -2,10 +2,11 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
-  Sparkles, Brain, Network, MessageSquare, Shield, 
-  ChevronRight, Github, Mail, Moon, Sun, Key, Code, GitBranch, 
-  Plus, FileCode
+  Sparkles, Brain, Network, MessageSquare, Shield,
+  Github, Mail, Moon, Sun, Key, Code, GitBranch, 
+  Plus, Globe, History, Bot, FileDiff
 } from 'lucide-react';
+import { FaApple, FaGooglePlay } from 'react-icons/fa';
 
 // Feature Data mapping to screens
 const FEATURES = [
@@ -33,21 +34,21 @@ const FEATURES = [
   {
     id: 'sessions',
     label: 'Session History',
-    icon: Network,
+    icon: History,
     screen: 'sessions',
     description: 'Track and resume your coding sessions.'
   },
   {
     id: 'chat',
     label: 'AI Assistant',
-    icon: MessageSquare,
+    icon: Bot,
     screen: 'chat',
     description: 'Chat naturally with context-aware AI.'
   },
   {
     id: 'changes',
     label: 'Track Changes',
-    icon: FileCode,
+    icon: FileDiff,
     screen: 'changes',
     description: 'Review file modifications in real-time.'
   },
@@ -71,7 +72,7 @@ export default function JulesGo() {
       setShowTextOverlay(true);
       const timer = setTimeout(() => {
         setShowTextOverlay(false);
-      }, 1200);
+      }, 1000);
       return () => clearTimeout(timer);
     }
   }, [activeIndex]);
@@ -139,13 +140,41 @@ export default function JulesGo() {
               </p>
               
               <div className="flex flex-col sm:flex-row justify-center gap-4">
+                {/* Web App Button (Blue -> Green) */}
                 <a 
                   href="https://jules-go.byteland.app" 
-                  className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-gradient-tri text-white font-bold text-lg hover:opacity-90 transition-opacity shadow-xl shadow-blue-500/30"
+                  className="flex items-center justify-center gap-3 px-6 py-3 rounded-xl bg-gradient-to-r from-rgb-blue to-rgb-green text-white hover:opacity-90 transition-opacity shadow-lg shadow-blue-500/20"
                 >
-                  Start Coding Now
-                  <ChevronRight className="ml-2 w-5 h-5" />
+                  <Globe className="w-8 h-8" />
+                  <div className="text-left">
+                    <div className="text-[10px] font-bold uppercase tracking-wider opacity-90">Available Now</div>
+                    <div className="text-sm font-bold">Web App</div>
+                  </div>
                 </a>
+
+                {/* iOS Store Button (Green -> Red) */}
+                <button 
+                  className="relative flex items-center justify-center gap-3 px-6 py-3 rounded-xl bg-gradient-to-r from-rgb-green to-rgb-red text-white cursor-not-allowed opacity-90 shadow-lg shadow-green-500/20 overflow-hidden"
+                >
+                  <div className="absolute inset-0 bg-slate-900/40"></div>
+                  <FaApple className="w-8 h-8 relative z-10" />
+                  <div className="text-left relative z-10">
+                    <div className="text-[10px] font-bold uppercase tracking-wider opacity-90">Coming Soon</div>
+                    <div className="text-sm font-bold">App Store</div>
+                  </div>
+                </button>
+
+                {/* Android Store Button (Red -> Blue) */}
+                <button 
+                  className="relative flex items-center justify-center gap-3 px-6 py-3 rounded-xl bg-gradient-to-r from-rgb-red to-rgb-blue text-white cursor-not-allowed opacity-90 shadow-lg shadow-red-500/20 overflow-hidden"
+                >
+                  <div className="absolute inset-0 bg-slate-900/40"></div>
+                  <FaGooglePlay className="w-7 h-7 relative z-10 ml-0.5" />
+                  <div className="text-left relative z-10">
+                    <div className="text-[10px] font-bold uppercase tracking-wider opacity-90">Coming Soon</div>
+                    <div className="text-sm font-bold">Google Play</div>
+                  </div>
+                </button>
               </div>
             </motion.div>
           </div>
@@ -171,12 +200,15 @@ export default function JulesGo() {
                 Experience the power of Google's advanced AI model designed specifically for coding. 
                 Jules GO brings this capability to your fingertips.
               </p>
+              
               <a 
-                href="https://jules-go.byteland.app" 
-                className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-white text-slate-900 font-bold text-lg hover:bg-slate-100 transition-colors"
+                href="https://developers.google.com/jules/api" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-white/10 text-white font-semibold hover:bg-white/20 transition-colors border border-white/20 backdrop-blur-sm"
               >
-                Get Started
-                <ChevronRight className="ml-2 w-5 h-5" />
+                <Code className="w-5 h-5 mr-2" />
+                View Jules API Docs
               </a>
             </motion.div>
           </div>
@@ -243,15 +275,15 @@ export default function JulesGo() {
         <section className="py-12 lg:py-24 bg-white overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Section Header */}
-            <div className="flex items-center justify-between mb-8 lg:mb-12">
+            <div className="flex items-center justify-center mb-8 lg:mb-12">
               <div className="flex items-center gap-4">
-                <h2 className="text-2xl md:text-4xl font-bold text-slate-900">Experience Jules GO</h2>
+                <h2 className="text-2xl md:text-4xl font-bold text-slate-900">Experience</h2>
                 <button
                   onClick={() => setIsDark(!isDark)}
-                  className="flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-slate-100 hover:bg-slate-200 transition-colors text-xs md:text-sm font-medium text-slate-700"
+                  className="p-2.5 rounded-full bg-slate-100 hover:bg-slate-200 transition-colors text-slate-700"
+                  title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
                 >
-                  {isDark ? <Moon className="w-3 h-3 md:w-4 md:h-4" /> : <Sun className="w-3 h-3 md:w-4 md:h-4" />}
-                  <span className="hidden sm:inline">{isDark ? 'Dark Mode' : 'Light Mode'}</span>
+                  {isDark ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
                 </button>
               </div>
             </div>
@@ -277,11 +309,11 @@ export default function JulesGo() {
             </div>
 
             {/* Desktop & Mobile Content Container */}
-            <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16">
+            <div className="flex flex-col lg:flex-row-reverse items-center justify-center gap-8 lg:gap-0">
               
-              {/* Desktop: Vertical Tabs on Left */}
-              <div className="hidden lg:flex flex-none z-10">
-                <div className="flex flex-col gap-3">
+              {/* Desktop: Vertical Tabs on Right */}
+              <div className="hidden lg:flex flex-1 z-10 justify-start lg:pl-12">
+                <div className="flex flex-col gap-3 w-full max-w-md">
                   {FEATURES.map((feature, index) => (
                     <button
                       key={feature.id}
@@ -296,7 +328,7 @@ export default function JulesGo() {
                       <div className={`p-3 rounded-xl transition-colors duration-300 shrink-0 ${
                         index === activeIndex 
                           ? 'bg-gradient-tri text-white' 
-                          : 'bg-slate-100 text-slate-400 group-hover:bg-slate-200'
+                          : 'bg-slate-100 text-slate-400 group-hover:bg-blue-50 group-hover:text-blue-600'
                       }`}>
                         <feature.icon className="w-6 h-6" />
                       </div>
@@ -315,12 +347,12 @@ export default function JulesGo() {
               </div>
 
               {/* Phone Frame - Centered */}
-              <div className="w-full lg:flex-1 flex justify-center relative px-4">
+              <div className="w-full lg:flex-1 flex justify-center lg:justify-end relative px-4 lg:pr-12">
                 {/* Background Blob */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] lg:w-[500px] h-[400px] lg:h-[500px] bg-gradient-to-tr from-blue-400/20 to-purple-400/20 rounded-full blur-[60px] lg:blur-[80px] -z-10"></div>
                 
                 <motion.div 
-                  className="relative w-full max-w-[420px] lg:max-w-[350px] aspect-[430/932]"
+                  className="relative h-[80vh] min-h-[500px] w-auto max-w-[420px] lg:max-w-[350px] aspect-[430/932]"
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
@@ -355,32 +387,24 @@ export default function JulesGo() {
                         {activeIndex !== null && (
                           <AnimatePresence>
                             {showTextOverlay && (
-                              <motion.div
-                                className={`lg:hidden absolute inset-0 flex flex-col items-center justify-center px-8 backdrop-blur-xl ${
-                                  isDark ? 'bg-slate-950/95' : 'bg-white/95'
-                                }`}
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.95 }}
-                                transition={{ duration: 0.3 }}
-                              >
-                                <div className="text-center space-y-4">
-                                  <div className={`inline-flex p-4 rounded-2xl mb-4 ${
-                                    isDark ? 'bg-white/10' : 'bg-slate-900/10'
-                                  }`}>
-                                    {(() => {
-                                      const Icon = FEATURES[activeIndex].icon;
-                                      return <Icon className={`w-12 h-12 ${isDark ? 'text-white' : 'text-slate-900'}`} />;
-                                    })()}
+                                <motion.div
+                                  className={`lg:hidden absolute top-12 left-3 right-3 p-4 rounded-2xl shadow-xl backdrop-blur-md z-40 border ${
+                                    isDark ? 'bg-slate-900/95 border-slate-800' : 'bg-white/95 border-slate-200'
+                                  }`}
+                                  initial={{ opacity: 0, y: -20 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  exit={{ opacity: 0, y: -20 }}
+                                  transition={{ duration: 0.3 }}
+                                >
+                                  <div>
+                                    <h3 className={`text-left text-sm font-bold mb-0.5 ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                                      {FEATURES[activeIndex].label}
+                                    </h3>
+                                    <p className={`text-left text-xs leading-relaxed line-clamp-2 ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
+                                      {FEATURES[activeIndex].description}
+                                    </p>
                                   </div>
-                                  <h3 className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                                    {FEATURES[activeIndex].label}
-                                  </h3>
-                                  <p className={`text-sm leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
-                                    {FEATURES[activeIndex].description}
-                                  </p>
-                                </div>
-                              </motion.div>
+                                </motion.div>
                             )}
                           </AnimatePresence>
                         )}
@@ -415,7 +439,7 @@ export default function JulesGo() {
             <div className="flex flex-col md:flex-row justify-between items-center gap-8">
               <div className="flex items-center gap-3">
                 <img src="/assets/images/julesgo-icon.svg" alt="JulesGo Icon" className="h-10 w-auto opacity-80" />
-                <span className="text-2xl font-bold text-white tracking-tight">Jules GO</span>
+                <span className="text-2xl font-extrabold tracking-tight font-brand text-gradient-tri">Jules GO</span>
               </div>
               
               <div className="flex gap-8 text-sm font-medium">
