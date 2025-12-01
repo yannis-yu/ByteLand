@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { 
   Sparkles, Brain, Network, MessageSquare, Shield,
   Github, Mail, Moon, Sun, Key, Code, GitBranch, 
-  Plus, Globe, History, Bot, FileDiff
+  Plus, History, Bot, FileDiff
 } from 'lucide-react';
 import { FaApple, FaGooglePlay } from 'react-icons/fa';
 
@@ -140,18 +140,6 @@ export default function JulesGo() {
               </p>
               
               <div className="flex flex-col sm:flex-row justify-center gap-4">
-                {/* Web App Button (Blue -> Green) */}
-                <a 
-                  href="https://jules-go.byteland.app" 
-                  className="flex items-center justify-center gap-3 px-6 py-3 rounded-xl bg-gradient-to-r from-rgb-blue to-rgb-green text-white hover:opacity-90 transition-opacity shadow-lg shadow-blue-500/20"
-                >
-                  <Globe className="w-8 h-8" />
-                  <div className="text-left">
-                    <div className="text-[10px] font-bold uppercase tracking-wider opacity-90">Available Now</div>
-                    <div className="text-sm font-bold">Web App</div>
-                  </div>
-                </a>
-
                 {/* iOS Store Button (Green -> Red) */}
                 <button 
                   className="relative flex items-center justify-center gap-3 px-6 py-3 rounded-xl bg-gradient-to-r from-rgb-green to-rgb-red text-white cursor-not-allowed opacity-90 shadow-lg shadow-green-500/20 overflow-hidden"

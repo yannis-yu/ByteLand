@@ -58,11 +58,8 @@ const JoyDex = () => {
                 JoyDex isn't just a database. It's a vibrant, interactive companion designed to bring joy back to your Pokémon adventure.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <button className="px-8 py-4 bg-gray-900 text-white rounded-2xl font-bold hover:bg-gray-800 transition-all transform hover:scale-105 shadow-lg hover:shadow-xl">
-                  Join Waitlist
-                </button>
-                <button className="px-8 py-4 bg-white text-gray-900 border border-gray-200 rounded-2xl font-bold hover:bg-gray-50 transition-all">
-                  Watch Demo
+                <button disabled className="px-8 py-4 bg-gray-200 text-gray-500 rounded-2xl font-bold cursor-not-allowed">
+                  Coming Soon
                 </button>
               </div>
             </div>
@@ -127,8 +124,8 @@ const JoyDex = () => {
           <div className="relative z-10">
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Ready to start your journey?</h2>
             <p className="text-gray-400 mb-8 text-lg">Join thousands of trainers waiting for the most joyful Pokédex experience ever created.</p>
-            <button className="px-10 py-4 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-2xl font-bold text-lg hover:shadow-lg hover:scale-105 transition-all">
-              Join the Waitlist
+            <button disabled className="px-10 py-4 bg-gray-200 text-gray-500 rounded-2xl font-bold text-lg cursor-not-allowed">
+              Coming Soon
             </button>
           </div>
         </div>
