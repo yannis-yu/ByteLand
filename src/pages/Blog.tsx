@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Calendar, User, Tag, Loader, AlertTriangle } from 'lucide-react';
-import ScrollToTop from '../components/ScrollToTop'; // Assuming this component exists
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { Calendar, User, Tag, Loader, AlertTriangle } from "lucide-react";
+import ScrollToTop from "../components/ScrollToTop"; // Assuming this component exists
 
 // This interface should match the structure of your blog-index.json objects
 interface PostMetadata {
@@ -12,30 +12,6 @@ interface PostMetadata {
   author: string;
   slug: string;
   contentPath: string;
-}
-
-// Re-using the header from Home.tsx for consistency
-function BlogHeader() {
-  return (
-    <header className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md z-50 border-b border-slate-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-        <Link to="/" className="flex items-center gap-2 group">
-          <img 
-            src="/assets/images/logo.svg" 
-            alt="ByteLand Logo" 
-            className="h-8 w-auto transition-transform duration-200 group-hover:scale-110" 
-          />
-          <span className="text-2xl font-extrabold tracking-tight font-brand text-gradient-tri">ByteLand</span>
-        </Link>
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
-          <Link to="/" className="hover:text-slate-900 transition-colors">Home</Link>
-          <Link to="/blog" className="text-slate-900 font-bold transition-colors">Blog</Link>
-          <a href="/#products" className="hover:text-slate-900 transition-colors">Products</a>
-          <a href="/#contact" className="hover:text-slate-900 transition-colors">Contact</a>
-        </nav>
-      </div>
-    </header>
-  );
 }
 
 /**
@@ -52,7 +28,6 @@ const simpleHash = (str: string): number => {
   return hash;
 };
 
-
 export default function Blog() {
   const [posts, setPosts] = useState<PostMetadata[]>([]);
   const [loading, setLoading] = useState(true);
@@ -63,7 +38,7 @@ export default function Blog() {
     async function fetchPosts() {
       try {
         setLoading(true);
-        const response = await fetch('/blog-index.json');
+        const response = await fetch("/blog-index.json");
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -79,28 +54,35 @@ export default function Blog() {
     fetchPosts();
   }, []);
 
-  const allTags = [...new Set(posts.flatMap(p => p.tags))].sort();
-  
+  const allTags = [...new Set(posts.flatMap((p) => p.tags))].sort();
+
   const filteredPosts = selectedTag
-    ? posts.filter(p => p.tags.includes(selectedTag))
+    ? posts.filter((p) => p.tags.includes(selectedTag))
     : posts;
 
   const tagColorClasses = [
-    { bg: 'bg-rgb-blue/10', text: 'text-rgb-blue', hover: 'hover:bg-rgb-blue/20' },
-    { bg: 'bg-rgb-green/10', text: 'text-rgb-green', hover: 'hover:bg-rgb-green/20' },
-    { bg: 'bg-rgb-red/10', text: 'text-rgb-red', hover: 'hover:bg-rgb-red/20' },
+    {
+      bg: "bg-rgb-blue/10",
+      text: "text-rgb-blue",
+      hover: "hover:bg-rgb-blue/20",
+    },
+    {
+      bg: "bg-rgb-green/10",
+      text: "text-rgb-green",
+      hover: "hover:bg-rgb-green/20",
+    },
+    { bg: "bg-rgb-red/10", text: "text-rgb-red", hover: "hover:bg-rgb-red/20" },
   ];
-  
+
   const getTagColor = (tag: string) => {
     const hash = simpleHash(tag);
     const index = Math.abs(hash) % tagColorClasses.length;
     return tagColorClasses[index];
-  }
+  };
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans">
       <ScrollToTop />
-      <BlogHeader />
 
       <main className="pt-16">
         <section className="py-20 lg:py-24">
@@ -111,16 +93,17 @@ export default function Blog() {
               transition={{ duration: 0.5 }}
             >
               <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight text-center mb-4">
-                The ByteLand Blog
+                The <span className="text-gradient-tri">ByteLog</span>
               </h1>
               <p className="text-lg text-slate-600 text-center max-w-2xl mx-auto mb-12">
-                Tutorials, product announcements, and deep dives into our technology.
+                Tutorials, product announcements, and deep dives into our
+                technology.
               </p>
             </motion.div>
 
             {/* Tag Filter Section */}
             {!loading && !error && posts.length > 0 && (
-              <motion.div 
+              <motion.div
                 className="flex flex-wrap justify-center gap-3 mb-16"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -130,13 +113,13 @@ export default function Blog() {
                   onClick={() => setSelectedTag(null)}
                   className={`px-4 py-2 text-sm font-semibold rounded-full transition-colors duration-200 ${
                     selectedTag === null
-                      ? 'bg-slate-900 text-white shadow'
-                      : 'bg-white text-slate-600 hover:bg-slate-200'
+                      ? "bg-slate-900 text-white shadow"
+                      : "bg-white text-slate-600 hover:bg-slate-200"
                   }`}
                 >
                   All Posts
                 </button>
-                {allTags.map(tag => {
+                {allTags.map((tag) => {
                   const colors = getTagColor(tag);
                   return (
                     <button
@@ -144,13 +127,13 @@ export default function Blog() {
                       onClick={() => setSelectedTag(tag)}
                       className={`px-4 py-2 text-sm font-semibold rounded-full transition-colors duration-200 ${
                         selectedTag === tag
-                          ? 'bg-slate-900 text-white shadow'
+                          ? "bg-slate-900 text-white shadow"
                           : `${colors.bg} ${colors.text} ${colors.hover}`
                       }`}
                     >
                       {tag}
                     </button>
-                  )
+                  );
                 })}
               </motion.div>
             )}
@@ -165,7 +148,10 @@ export default function Blog() {
               <div className="flex flex-col items-center justify-center py-16 bg-red-50 text-red-700 rounded-lg">
                 <AlertTriangle className="w-10 h-10 mb-4" />
                 <h2 className="text-xl font-bold mb-2">Failed to load posts</h2>
-                <p>There was an error fetching the blog index. Please try again later.</p>
+                <p>
+                  There was an error fetching the blog index. Please try again
+                  later.
+                </p>
                 <p className="text-sm text-red-500 mt-2">Error: {error}</p>
               </div>
             )}
@@ -173,7 +159,11 @@ export default function Blog() {
             {!loading && !error && filteredPosts.length > 0 && (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {filteredPosts.map((post, index) => {
-                  const accentColorClasses = ['border-t-rgb-red', 'border-t-rgb-green', 'border-t-rgb-blue'];
+                  const accentColorClasses = [
+                    "border-t-rgb-red",
+                    "border-t-rgb-green",
+                    "border-t-rgb-blue",
+                  ];
                   const accentClass = accentColorClasses[index % 3];
 
                   return (
@@ -184,12 +174,26 @@ export default function Blog() {
                       transition={{ duration: 0.5, delay: index * 0.05 }}
                       className="h-full"
                     >
-                      <Link to={`/blog/${post.slug}`} className="block group h-full">
-                        <article className={`bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-shadow duration-300 border-t-4 h-full flex flex-col ${accentClass}`}>
+                      <Link
+                        to={`/blog/${post.slug}`}
+                        className="block group h-full"
+                      >
+                        <article
+                          className={`bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-shadow duration-300 border-t-4 h-full flex flex-col ${accentClass}`}
+                        >
                           <div className="mb-4 flex items-center gap-4 text-sm text-slate-500">
                             <div className="flex items-center gap-2">
                               <Calendar className="w-4 h-4" />
-                              <span>{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                              <span>
+                                {new Date(post.date).toLocaleDateString(
+                                  "en-US",
+                                  {
+                                    year: "numeric",
+                                    month: "long",
+                                    day: "numeric",
+                                  }
+                                )}
+                              </span>
                             </div>
                             <div className="flex items-center gap-2">
                               <User className="w-4 h-4" />
@@ -200,15 +204,18 @@ export default function Blog() {
                           <h2 className="text-2xl font-bold text-slate-900 mb-4 group-hover:text-rgb-blue transition-colors flex-grow">
                             {post.title}
                           </h2>
-                          
+
                           <div className="flex flex-wrap gap-2 mt-auto">
-                            {post.tags.map(tag => {
+                            {post.tags.map((tag) => {
                               const colors = getTagColor(tag);
                               return (
-                                <span key={tag} className={`px-3 py-1 text-xs font-semibold rounded-full ${colors.bg} ${colors.text}`}>
+                                <span
+                                  key={tag}
+                                  className={`px-3 py-1 text-xs font-semibold rounded-full ${colors.bg} ${colors.text}`}
+                                >
                                   {tag}
                                 </span>
-                              )
+                              );
                             })}
                           </div>
                         </article>
@@ -218,11 +225,13 @@ export default function Blog() {
                 })}
               </div>
             )}
-            
+
             {!loading && !error && filteredPosts.length === 0 && (
               <div className="text-center py-16">
                 <Tag className="w-12 h-12 text-slate-400 mx-auto mb-4" />
-                <h2 className="text-xl font-bold text-slate-700">No posts found</h2>
+                <h2 className="text-xl font-bold text-slate-700">
+                  No posts found
+                </h2>
                 <p className="text-slate-500 mt-2">
                   There are no posts matching the tag "{selectedTag}".
                 </p>

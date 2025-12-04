@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import { motion } from 'framer-motion';
-import { Calendar, User, Loader, AlertTriangle, ArrowLeft } from 'lucide-react';
-import ScrollToTop from '../components/ScrollToTop';
+import { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { motion } from "framer-motion";
+import { Calendar, User, Loader, AlertTriangle, ArrowLeft } from "lucide-react";
+import ScrollToTop from "../components/ScrollToTop";
 
 interface PostMetadata {
   title: string;
@@ -13,26 +13,6 @@ interface PostMetadata {
   author: string;
   slug: string;
   contentPath: string;
-}
-
-// Re-using the header from Home.tsx/Blog.tsx for consistency
-function BlogHeader() {
-  return (
-    <header className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md z-50 border-b border-slate-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-        <Link to="/" className="flex items-center gap-2 group">
-          <img src="/assets/images/logo.svg" alt="ByteLand Logo" className="h-8 w-auto transition-transform duration-200 group-hover:scale-110" />
-          <span className="text-2xl font-extrabold tracking-tight font-brand text-gradient-tri">ByteLand</span>
-        </Link>
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
-          <Link to="/" className="hover:text-slate-900 transition-colors">Home</Link>
-          <Link to="/blog" className="text-slate-900 font-bold transition-colors">Blog</Link>
-          <a href="/#products" className="hover:text-slate-900 transition-colors">Products</a>
-          <a href="/#contact" className="hover:text-slate-900 transition-colors">Contact</a>
-        </nav>
-      </div>
-    </header>
-  );
 }
 
 /**
@@ -51,33 +31,89 @@ function stripFrontmatter(markdown: string): string {
 
 // Add this components object to define custom styles for markdown elements
 const MarkdownComponents: object = {
-  h1: ({...props}) => <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-12 mb-6" {...props} />,
-  h2: ({...props}) => <h2 className="text-2xl sm:text-3xl font-bold text-rgb-blue mt-10 mb-4 border-b border-blue-200/50 pb-3" {...props} />,
-  h3: ({...props}) => <h3 className="text-xl sm:text-2xl font-bold text-rgb-green mt-8 mb-4" {...props} />,
-  h4: ({...props}) => <h4 className="text-lg sm:text-xl font-bold text-rgb-red mt-8 mb-4" {...props} />,
-  p: ({...props}) => <p className="text-lg text-slate-700 leading-relaxed my-6" {...props} />,
-  a: ({...props}) => <a className="text-rgb-blue font-semibold hover:underline hover:text-rgb-red transition-colors" {...props} />,
-  ul: ({...props}) => <ul className="list-disc pl-6 my-6 space-y-3" {...props} />,
-  ol: ({...props}) => <ol className="list-decimal pl-6 my-6 space-y-3" {...props} />,
-  li: ({...props}) => <li className="text-lg text-slate-700" {...props} />,
-  code: ({inline, className, children, ...props}: {inline?: boolean; className?: string; children?: React.ReactNode}) => {
+  h1: ({ ...props }) => (
+    <h1
+      className="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-12 mb-6"
+      {...props}
+    />
+  ),
+  h2: ({ ...props }) => (
+    <h2
+      className="text-2xl sm:text-3xl font-bold text-rgb-blue mt-10 mb-4 border-b border-blue-200/50 pb-3"
+      {...props}
+    />
+  ),
+  h3: ({ ...props }) => (
+    <h3
+      className="text-xl sm:text-2xl font-bold text-rgb-green mt-8 mb-4"
+      {...props}
+    />
+  ),
+  h4: ({ ...props }) => (
+    <h4
+      className="text-lg sm:text-xl font-bold text-rgb-red mt-8 mb-4"
+      {...props}
+    />
+  ),
+  p: ({ ...props }) => (
+    <p className="text-lg text-slate-700 leading-relaxed my-6" {...props} />
+  ),
+  a: ({ ...props }) => (
+    <a
+      className="text-rgb-blue font-semibold hover:underline hover:text-rgb-red transition-colors"
+      {...props}
+    />
+  ),
+  ul: ({ ...props }) => (
+    <ul className="list-disc pl-6 my-6 space-y-3" {...props} />
+  ),
+  ol: ({ ...props }) => (
+    <ol className="list-decimal pl-6 my-6 space-y-3" {...props} />
+  ),
+  li: ({ ...props }) => <li className="text-lg text-slate-700" {...props} />,
+  code: ({
+    inline,
+    className,
+    children,
+    ...props
+  }: {
+    inline?: boolean;
+    className?: string;
+    children?: React.ReactNode;
+  }) => {
     return !inline ? (
-       // For code blocks, 'pre' wrapper will handle styling.
-      <code className={className} {...props}>{children}</code>
-    ) : (
-      <code className="bg-slate-100 text-rgb-red font-mono text-sm px-1.5 py-1 rounded" {...props}>
+      // For code blocks, 'pre' wrapper will handle styling.
+      <code className={className} {...props}>
         {children}
       </code>
-    )
+    ) : (
+      <code
+        className="bg-slate-100 text-rgb-red font-mono text-sm px-1.5 py-1 rounded"
+        {...props}
+      >
+        {children}
+      </code>
+    );
   },
-  pre: ({...props}) => <div className="bg-slate-800 rounded-lg my-6"><pre className="text-white text-sm p-4 overflow-x-auto" {...props} /></div>,
-  blockquote: ({...props}) => <blockquote className="border-l-4 border-rgb-green/50 bg-rgb-green/5 p-4 my-6 text-slate-700 italic" {...props} />,
+  pre: ({ ...props }) => (
+    <div className="bg-slate-800 rounded-lg my-6">
+      <pre className="text-white text-sm p-4 overflow-x-auto" {...props} />
+    </div>
+  ),
+  blockquote: ({ ...props }) => (
+    <blockquote
+      className="border-l-4 border-rgb-green/50 bg-rgb-green/5 p-4 my-6 text-slate-700 italic"
+      {...props}
+    />
+  ),
 };
 
-
 export default function BlogPost() {
-  const { slug } = useParams<{ slug:string }>();
-  const [post, setPost] = useState<{ metadata: PostMetadata; content: string } | null>(null);
+  const { slug } = useParams<{ slug: string }>();
+  const [post, setPost] = useState<{
+    metadata: PostMetadata;
+    content: string;
+  } | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -86,17 +122,18 @@ export default function BlogPost() {
       try {
         setLoading(true);
         // Step 1: Fetch the index
-        const indexResponse = await fetch('/blog-index.json');
-        if (!indexResponse.ok) throw new Error('Could not fetch blog index.');
+        const indexResponse = await fetch("/blog-index.json");
+        if (!indexResponse.ok) throw new Error("Could not fetch blog index.");
         const index: PostMetadata[] = await indexResponse.json();
-        
+
         // Step 2: Find the post metadata by slug
-        const metadata = index.find(p => p.slug === slug);
-        if (!metadata) throw new Error('Post not found.');
+        const metadata = index.find((p) => p.slug === slug);
+        if (!metadata) throw new Error("Post not found.");
 
         // Step 3: Fetch the markdown content
         const contentResponse = await fetch(metadata.contentPath);
-        if (!contentResponse.ok) throw new Error('Could not fetch post content.');
+        if (!contentResponse.ok)
+          throw new Error("Could not fetch post content.");
         const rawContent = await contentResponse.text();
 
         // Step 4: Strip frontmatter before setting state
@@ -118,16 +155,25 @@ export default function BlogPost() {
 
   const renderContent = () => {
     if (loading) {
-      return <div className="flex justify-center items-center py-32"><Loader className="w-16 h-16 text-rgb-blue animate-spin" /></div>;
+      return (
+        <div className="flex justify-center items-center py-32">
+          <Loader className="w-16 h-16 text-rgb-blue animate-spin" />
+        </div>
+      );
     }
 
     if (error || !post) {
       return (
         <div className="flex flex-col items-center justify-center py-32 bg-red-50 text-red-700 rounded-lg">
           <AlertTriangle className="w-12 h-12 mb-4" />
-          <h2 className="text-2xl font-bold mb-2">{error ? 'Error Loading Post' : 'Post Not Found'}</h2>
-          <p>{error || 'The requested blog post could not be found.'}</p>
-          <Link to="/blog" className="mt-8 inline-flex items-center px-6 py-2 rounded-full bg-rgb-blue text-white font-medium hover:opacity-90 transition-opacity">
+          <h2 className="text-2xl font-bold mb-2">
+            {error ? "Error Loading Post" : "Post Not Found"}
+          </h2>
+          <p>{error || "The requested blog post could not be found."}</p>
+          <Link
+            to="/blog"
+            className="mt-8 inline-flex items-center px-6 py-2 rounded-full bg-rgb-blue text-white font-medium hover:opacity-90 transition-opacity"
+          >
             <ArrowLeft className="mr-2 w-4 h-4" />
             Back to Blog
           </Link>
@@ -149,7 +195,13 @@ export default function BlogPost() {
           <div className="flex justify-center items-center gap-6 text-md text-slate-500">
             <div className="flex items-center gap-2">
               <Calendar className="w-5 h-5" />
-              <span>{new Date(post.metadata.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+              <span>
+                {new Date(post.metadata.date).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </span>
             </div>
             <div className="flex items-center gap-2">
               <User className="w-5 h-5" />
@@ -157,8 +209,11 @@ export default function BlogPost() {
             </div>
           </div>
           <div className="mt-6 flex flex-wrap justify-center gap-2">
-            {post.metadata.tags.map(tag => (
-              <span key={tag} className="px-3 py-1 text-sm font-semibold text-slate-600 bg-slate-100 rounded-full">
+            {post.metadata.tags.map((tag) => (
+              <span
+                key={tag}
+                className="px-3 py-1 text-sm font-semibold text-slate-600 bg-slate-100 rounded-full"
+              >
                 {tag}
               </span>
             ))}
@@ -181,7 +236,6 @@ export default function BlogPost() {
   return (
     <div className="min-h-screen bg-white font-sans">
       <ScrollToTop />
-      <BlogHeader />
       <main className="pt-24 pb-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           {renderContent()}

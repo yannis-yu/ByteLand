@@ -1,42 +1,13 @@
-import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect } from "react";
 
 const JoyDex = () => {
   useEffect(() => {
-    document.title = 'JoyDex - The Ultimate Companion';
+    document.title = "JoyDex - The Ultimate Companion";
   }, []);
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900 font-sans">
       {/* Navigation */}
-      <nav className="fixed w-full bg-white/80 backdrop-blur-md z-50 border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <button 
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="flex items-center gap-2 group"
-            >
-              <img 
-                src="/assets/images/joydex-icon.svg" 
-                alt="JoyDex" 
-                className="w-8 h-8 transition-transform duration-200 group-hover:scale-110" 
-              />
-              <span className="font-bold text-xl text-gradient-tri">JoyDex</span>
-            </button>
-            <Link 
-              to="/" 
-              className="group"
-              title="Back to ByteLand"
-            >
-              <img 
-                src="/assets/images/logo.svg" 
-                alt="ByteLand Logo" 
-                className="h-8 w-auto transition-transform duration-200 group-hover:scale-110" 
-              />
-            </Link>
-          </div>
-        </div>
-      </nav>
 
       {/* Hero Section */}
       <section className="pt-32 pb-20 px-4 overflow-hidden">
@@ -51,30 +22,36 @@ const JoyDex = () => {
                 Coming Soon to iOS & Android
               </div>
               <h1 className="text-5xl lg:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
-                Your Journey, <br/>
-                <span className="bg-gradient-to-r from-red-500 to-yellow-500 bg-clip-text text-transparent">Reimagined.</span>
+                Your Journey, <br />
+                <span className="bg-gradient-to-r from-red-500 to-yellow-500 bg-clip-text text-transparent">
+                  Reimagined.
+                </span>
               </h1>
               <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto lg:mx-0">
-                JoyDex isn't just a database. It's a vibrant, interactive companion designed to bring joy back to your Pokémon adventure.
+                JoyDex isn't just a database. It's a vibrant, interactive
+                companion designed to bring joy back to your Pokémon adventure.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <button disabled className="px-8 py-4 bg-gray-200 text-gray-500 rounded-2xl font-bold cursor-not-allowed">
+                <button
+                  disabled
+                  className="px-8 py-4 bg-gray-200 text-gray-500 rounded-2xl font-bold cursor-not-allowed"
+                >
                   Coming Soon
                 </button>
               </div>
             </div>
-            
+
             <div className="lg:w-1/2 relative">
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-red-200 to-yellow-200 rounded-full blur-3xl opacity-30 animate-pulse"></div>
               <div className="relative flex justify-center items-center gap-6">
-                <img 
-                  src="/assets/images/joydex-mockup-home.svg" 
-                  alt="App Home" 
+                <img
+                  src="/assets/images/joydex-mockup-home.svg"
+                  alt="App Home"
                   className="w-64 drop-shadow-2xl transform -rotate-6 hover:rotate-0 transition-all duration-500"
                 />
-                <img 
-                  src="/assets/images/joydex-mockup-detail.svg" 
-                  alt="App Detail" 
+                <img
+                  src="/assets/images/joydex-mockup-detail.svg"
+                  alt="App Detail"
                   className="w-64 drop-shadow-2xl transform translate-y-12 rotate-6 hover:rotate-0 transition-all duration-500 hidden sm:block"
                 />
               </div>
@@ -88,29 +65,32 @@ const JoyDex = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-4">Why JoyDex?</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">Built by trainers, for trainers. We've packed every feature you need into a beautiful, joy-filled interface.</p>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Built by trainers, for trainers. We've packed every feature you
+              need into a beautiful, joy-filled interface.
+            </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <FeatureCard 
-              icon="📚" 
-              title="Ultimate Database" 
+            <FeatureCard
+              icon="📚"
+              title="Ultimate Database"
               desc="Gen 1-9 complete data. Moves, abilities, stats, and evolution trees at your fingertips."
             />
-            <FeatureCard 
-              icon="⚔️" 
-              title="Smart Team Builder" 
+            <FeatureCard
+              icon="⚔️"
+              title="Smart Team Builder"
               desc="Analyze synergy, coverage, and weaknesses. Build the perfect competitive team."
             />
-            <FeatureCard 
-              icon="✨" 
-              title="Catch Tracker" 
+            <FeatureCard
+              icon="✨"
+              title="Catch Tracker"
               desc="Track your Living Dex, Shinies, and Alphas. Sync across all your devices."
             />
 
-            <FeatureCard 
-              icon="🌑" 
-              title="Offline First" 
+            <FeatureCard
+              icon="🌑"
+              title="Offline First"
               desc="No signal? No problem. The entire database is stored locally on your device."
             />
           </div>
@@ -120,11 +100,23 @@ const JoyDex = () => {
       {/* CTA */}
       <section className="py-20 px-4">
         <div className="max-w-5xl mx-auto bg-gray-900 rounded-[3rem] p-12 text-center relative overflow-hidden">
-          <img src="/assets/images/joydex-icon.svg" alt="" className="absolute bottom-0 right-0 w-[800px] h-[800px] opacity-5 translate-x-1/2 translate-y-1/2 pointer-events-none" />
+          <img
+            src="/assets/images/joydex-icon.svg"
+            alt=""
+            className="absolute bottom-0 right-0 w-[800px] h-[800px] opacity-5 translate-x-1/2 translate-y-1/2 pointer-events-none"
+          />
           <div className="relative z-10">
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Ready to start your journey?</h2>
-            <p className="text-gray-400 mb-8 text-lg">Join thousands of trainers waiting for the most joyful Pokédex experience ever created.</p>
-            <button disabled className="px-10 py-4 bg-gray-200 text-gray-500 rounded-2xl font-bold text-lg cursor-not-allowed">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+              Ready to start your journey?
+            </h2>
+            <p className="text-gray-400 mb-8 text-lg">
+              Join thousands of trainers waiting for the most joyful Pokédex
+              experience ever created.
+            </p>
+            <button
+              disabled
+              className="px-10 py-4 bg-gray-200 text-gray-500 rounded-2xl font-bold text-lg cursor-not-allowed"
+            >
               Coming Soon
             </button>
           </div>
@@ -133,16 +125,32 @@ const JoyDex = () => {
 
       {/* Footer */}
       <footer className="py-12 text-center text-gray-500 text-sm">
-        <p>© 2025 JoyDex. Pokémon is a trademark of Nintendo/Creatures Inc./GAME FREAK inc.</p>
-        <p className="mt-2">JoyDex is an unofficial fan-made app and is not affiliated with Nintendo.</p>
+        <p>
+          © 2025 JoyDex. Pokémon is a trademark of Nintendo/Creatures Inc./GAME
+          FREAK inc.
+        </p>
+        <p className="mt-2">
+          JoyDex is an unofficial fan-made app and is not affiliated with
+          Nintendo.
+        </p>
       </footer>
     </div>
   );
 };
 
-const FeatureCard = ({ icon, title, desc }: { icon: string, title: string, desc: string }) => (
+const FeatureCard = ({
+  icon,
+  title,
+  desc,
+}: {
+  icon: string;
+  title: string;
+  desc: string;
+}) => (
   <div className="p-8 rounded-3xl bg-gray-50 hover:bg-white hover:shadow-xl transition-all duration-300 border border-transparent hover:border-gray-100 group">
-    <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">{icon}</div>
+    <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
+      {icon}
+    </div>
     <h3 className="text-xl font-bold mb-3 text-gray-900">{title}</h3>
     <p className="text-gray-600 leading-relaxed">{desc}</p>
   </div>
