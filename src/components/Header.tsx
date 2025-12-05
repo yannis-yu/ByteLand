@@ -96,9 +96,10 @@ export default function Header() {
               // OTHER PAGE STATE: Page Icon & Title
               <motion.div
                 className="flex items-center gap-2"
-                key="page-logo"
-                initial={{ opacity: 1 }}
-                exit={{ opacity: 0, transition: { duration: 0.2 } }}
+                key={`page-${pageData?.id || 'unknown'}`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0, transition: { duration: 0.15 } }}
               >
                 {pageData && (
                   <>
@@ -107,25 +108,72 @@ export default function Header() {
                       src={pageData.icon}
                       alt={`${pageData.title} Icon`}
                       className="h-8 w-auto"
-                      initial={{ x: -50, opacity: 0 }}
-                      animate={{ x: 0, opacity: 1 }}
-                      exit={{ x: -50, opacity: 0 }}
-                      transition={{
-                        type: "spring",
-                        bounce: 0.2,
-                        duration: 0.6,
+                      initial={{ x: -100, opacity: 0, scale: 0.8 }}
+                      animate={{
+                        x: 0,
+                        opacity: 1,
+                        scale: 1,
+                        transition: {
+                          type: "spring",
+                          bounce: 0.3,
+                          duration: 0.7,
+                          delay: 0.1
+                        }
+                      }}
+                      exit={{
+                        x: -100,
+                        opacity: 0,
+                        scale: 0.8,
+                        transition: {
+                          duration: 0.3
+                        }
                       }}
                     />
                     <motion.span
                       layoutId={`title-${pageData.id}`}
-                      className={`text-2xl font-extrabold tracking-tight font-brand ${pageData.color}`}
-                      initial={{ x: -50, opacity: 0 }}
-                      animate={{ x: 0, opacity: 1 }}
-                      exit={{ x: -50, opacity: 0 }}
-                      transition={{
-                        type: "spring",
-                        bounce: 0.2,
-                        duration: 0.6,
+                      className={`text-2xl font-extrabold tracking-tight font-brand ${pageData.color} overflow-hidden`}
+                      initial={{
+                        x: -80,
+                        opacity: 0,
+                        maxWidth: 0,
+                        filter: "blur(8px)"
+                      }}
+                      animate={{
+                        x: 0,
+                        opacity: 1,
+                        maxWidth: "200px",
+                        filter: "blur(0px)",
+                        transition: {
+                          type: "spring",
+                          bounce: 0.3,
+                          duration: 0.7,
+                          delay: 0.25,
+                          maxWidth: {
+                            delay: 0.25,
+                            type: "spring",
+                            bounce: 0.2,
+                            duration: 0.6
+                          },
+                          filter: {
+                            delay: 0.3,
+                            duration: 0.4
+                          }
+                        }
+                      }}
+                      exit={{
+                        x: -80,
+                        opacity: 0,
+                        maxWidth: 0,
+                        filter: "blur(8px)",
+                        transition: {
+                          duration: 0.25,
+                          maxWidth: {
+                            duration: 0.2
+                          }
+                        }
+                      }}
+                      style={{
+                        whiteSpace: "nowrap"
                       }}
                     >
                       {pageData.title}
