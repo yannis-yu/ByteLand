@@ -1,16 +1,44 @@
 import { useEffect } from "react";
+import Page from "../components/Page";
+import { FooterConfig } from "../components/Footer";
 
 const JoyDex = () => {
   useEffect(() => {
     document.title = "JoyDex - The Ultimate Companion";
   }, []);
 
-  return (
-    <div className="min-h-screen bg-gray-50 text-gray-900 font-sans">
-      {/* Navigation */}
+  const footerConfig: FooterConfig = {
+    variant: "grid",
+    brand: {
+      title: "JoyDex",
+      icon: "/assets/images/joydex-icon.svg",
+      description: "The ultimate companion for your Pokémon journey.",
+    },
+    links: [
+      {
+        title: "Links",
+        items: [
+          { label: "Home", to: "/" },
+          { label: "Privacy Policy", to: "/privacy-policy" },
+        ],
+      },
+    ],
+    socials: true,
+    customContent: (
+      <div className="text-center text-gray-500 text-sm mt-8 pt-8 border-t border-gray-200">
+        <p>Pokémon is a trademark of Nintendo/Creatures Inc./GAME FREAK inc.</p>
+        <p className="mt-2">
+          JoyDex is an unofficial fan-made app and is not affiliated with
+          Nintendo.
+        </p>
+      </div>
+    ),
+  };
 
+  return (
+    <Page footerConfig={footerConfig} className="bg-gray-50 text-gray-900">
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-4 overflow-hidden">
+      <section className="pt-16 pb-20 px-4 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="lg:w-1/2 text-center lg:text-left z-10">
@@ -122,19 +150,7 @@ const JoyDex = () => {
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="py-12 text-center text-gray-500 text-sm">
-        <p>
-          © 2025 JoyDex. Pokémon is a trademark of Nintendo/Creatures Inc./GAME
-          FREAK inc.
-        </p>
-        <p className="mt-2">
-          JoyDex is an unofficial fan-made app and is not affiliated with
-          Nintendo.
-        </p>
-      </footer>
-    </div>
+    </Page>
   );
 };
 

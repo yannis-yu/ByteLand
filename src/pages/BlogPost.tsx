@@ -4,7 +4,8 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { motion } from "framer-motion";
 import { Calendar, User, Loader, AlertTriangle, ArrowLeft } from "lucide-react";
-import ScrollToTop from "../components/ScrollToTop";
+import Page from "../components/Page";
+import { FooterConfig } from "../components/Footer";
 
 interface PostMetadata {
   title: string;
@@ -233,14 +234,32 @@ export default function BlogPost() {
     );
   };
 
+  const footerConfig: FooterConfig = {
+    variant: "grid",
+    brand: {
+      title: "ByteLog",
+      description: "Insights and updates from the ByteLand team.",
+      icon: "/assets/images/bytelog-icon.svg",
+    },
+    links: [
+      {
+        title: "Links",
+        items: [
+          { label: "Home", to: "/" },
+          { label: "Products", to: "/#products" },
+        ],
+      },
+    ],
+    socials: true,
+  };
+
   return (
-    <div className="min-h-screen bg-white font-sans">
-      <ScrollToTop />
-      <main className="pt-24 pb-16">
+    <Page footerConfig={footerConfig} className="bg-white">
+      <div className="pt-8 pb-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           {renderContent()}
         </div>
-      </main>
-    </div>
+      </div>
+    </Page>
   );
 }
