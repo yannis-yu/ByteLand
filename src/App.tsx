@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
+import { usePageTracking } from "./hooks/usePageTracking";
 
 // Lazy load page components for route-based code splitting
 const Home = lazy(() => import("./pages/Home"));
@@ -24,6 +25,8 @@ function PageLoader() {
 }
 
 function App() {
+  usePageTracking();
+
   return (
     <>
       <ScrollToTop />
