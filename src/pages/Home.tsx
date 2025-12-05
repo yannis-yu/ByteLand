@@ -145,7 +145,6 @@ export default function Home() {
                   </span>
                   {/* JulesGo Animated Icon */}
                   <motion.img
-                    layoutId="icon-jules-go"
                     src="/assets/images/julesgo-icon.svg"
                     alt="Jules GO Ghost"
                     className="w-24 h-24 drop-shadow-lg relative z-10 transition-transform duration-300 group-hover:scale-110"
@@ -157,7 +156,6 @@ export default function Home() {
                     className="flex items-center gap-2 mb-4 group/title hover:gap-3 transition-all cursor-pointer"
                   >
                     <motion.h3
-                      layoutId="title-jules-go"
                       className="text-2xl font-extrabold tracking-tight font-brand text-gradient-tri"
                     >
                       Jules GO
@@ -208,7 +206,6 @@ export default function Home() {
                   </span>
                   {/* SeeList Icon */}
                   <motion.img
-                    layoutId="icon-seelist"
                     src="/assets/images/seelist-icon.svg"
                     alt="SeeList Icon"
                     className="w-24 h-24 drop-shadow-lg relative z-10 transition-transform duration-300 group-hover:scale-110"
@@ -220,7 +217,6 @@ export default function Home() {
                     className="flex items-center gap-2 mb-4 group/title hover:gap-3 transition-all cursor-pointer"
                   >
                     <motion.h3
-                      layoutId="title-seelist"
                       className="text-2xl font-extrabold tracking-tight font-brand text-gradient-tri"
                     >
                       SeeList
@@ -271,7 +267,6 @@ export default function Home() {
                   </span>
                   {/* JoyDex Icon */}
                   <motion.img
-                    layoutId="icon-joydex"
                     src="/assets/images/joydex-icon.svg"
                     alt="JoyDex Icon"
                     className="w-24 h-24 drop-shadow-lg relative z-10 transition-transform duration-300 group-hover:scale-110"
@@ -283,7 +278,6 @@ export default function Home() {
                     className="flex items-center gap-2 mb-4 group/title hover:gap-3 transition-all cursor-pointer"
                   >
                     <motion.h3
-                      layoutId="title-joydex"
                       className="text-2xl font-extrabold tracking-tight font-brand text-gradient-tri"
                     >
                       JoyDex
