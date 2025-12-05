@@ -3,6 +3,8 @@ import Home from './pages/Home';
 import JulesGo from './pages/JulesGo';
 import SeeList from './pages/SeeList';
 import JoyDex from './pages/JoyDex';
+import Blog from './pages/Blog';
+import BlogPost from './pages/BlogPost';
 import ScrollToTop from './components/ScrollToTop';
 
 function App() {
@@ -14,6 +16,8 @@ function App() {
         <Route path="/jules-go" element={<JulesGo />} />
         <Route path="/seelist" element={<SeeList />} />
         <Route path="/joydex" element={<JoyDex />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:slug" element={<BlogPost />} />
       </Routes>
     </>
   );

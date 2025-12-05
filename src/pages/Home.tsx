@@ -8,21 +8,19 @@ export default function Home() {
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md z-50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-          <button 
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="flex items-center gap-2 group"
-          >
+          <Link to="/" className="flex items-center gap-2 group">
             <img 
               src="/assets/images/logo.svg" 
               alt="ByteLand Logo" 
               className="h-8 w-auto transition-transform duration-200 group-hover:scale-110" 
             />
             <span className="text-2xl font-extrabold tracking-tight font-brand text-gradient-tri">ByteLand</span>
-          </button>
+          </Link>
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
             <a href="#home" className="hover:text-slate-900 transition-colors">Home</a>
             <a href="#about" className="hover:text-slate-900 transition-colors">About</a>
             <a href="#products" className="hover:text-slate-900 transition-colors">Products</a>
+            <Link to="/blog" className="hover:text-slate-900 transition-colors">Blog</Link>
             <a href="#contact" className="hover:text-slate-900 transition-colors">Contact</a>
           </nav>
         </div>
