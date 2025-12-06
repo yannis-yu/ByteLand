@@ -59,6 +59,39 @@ function parseFrontmatter(fileContent: string): {
 }
 
 /**
+ * Recursively finds all markdown files in a directory.
+ * @param dir - The directory to search.
+ * @returns An array of objects with filePath and relativePath.
+ */
+function findMarkdownFiles(
+  dir: string,
+  baseDir: string = dir
+): { filePath: string; relativePath: string }[] {
+  const results: { filePath: string; relativePath: string }[] = [];
+
+  if (!fs.existsSync(dir)) {
+    return results;
+  }
+
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+
+    if (entry.isDirectory()) {
+      // Recursively search subdirectories
+      results.push(...findMarkdownFiles(fullPath, baseDir));
+    } else if (entry.isFile() && entry.name.endsWith(".md")) {
+      // Calculate relative path from baseDir
+      const relativePath = path.relative(baseDir, fullPath);
+      results.push({ filePath: fullPath, relativePath });
+    }
+  }
+
+  return results;
+}
+
+/**
  * Generates a JSON index of all blog posts.
  */
 function generateIndex() {
@@ -72,20 +105,22 @@ function generateIndex() {
       return;
     }
 
-    const postFiles = fs
-      .readdirSync(postsDir)
-      .filter((file) => file.endsWith(".md"));
+    const postFiles = findMarkdownFiles(postsDir);
 
-    const index: PostMetadata[] = postFiles.map((fileName) => {
-      const filePath = path.join(postsDir, fileName);
-      const fileContent = fs.readFileSync(filePath, "utf8");
-      const { metadata } = parseFrontmatter(fileContent);
+    const index: PostMetadata[] = postFiles.map(
+      ({ filePath, relativePath }) => {
+        const fileContent = fs.readFileSync(filePath, "utf8");
+        const { metadata } = parseFrontmatter(fileContent);
 
-      return {
-        ...(metadata as PostMetadata),
-        contentPath: `/${path.join("posts", fileName)}`.replace(/\\/g, "/"),
-      };
-    });
+        return {
+          ...(metadata as PostMetadata),
+          contentPath: `/${path.join("posts", relativePath)}`.replace(
+            /\\/g,
+            "/"
+          ),
+        };
+      }
+    );
 
     // Sort posts by date, newest first
     index.sort(

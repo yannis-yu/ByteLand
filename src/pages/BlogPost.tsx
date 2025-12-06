@@ -142,7 +142,13 @@ export default function BlogPost() {
         </header>
 
         {/* Post Content */}
-        <MarkdownRenderer content={post.content} />
+        <MarkdownRenderer
+          content={post.content}
+          basePath={post.metadata.contentPath.substring(
+            0,
+            post.metadata.contentPath.lastIndexOf("/")
+          )}
+        />
       </motion.article>
     );
   };
