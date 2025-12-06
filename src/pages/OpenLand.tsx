@@ -14,9 +14,9 @@ export default function OpenLand() {
   const footerConfig: FooterConfig = {
     variant: "grid",
     brand: {
-      title: "ByteLand",
-      description: "Innovating for your everyday life.",
-      icon: "/assets/images/logo.svg",
+      title: "OpenLand",
+      description: "Building the future, together.",
+      icon: "/assets/images/openland-icon.svg",
     },
     links: [
       {
@@ -44,8 +44,15 @@ export default function OpenLand() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
+            <div className="flex justify-center mb-6">
+              <img
+                src="/assets/images/openland-icon.svg"
+                alt="Open Source Icon"
+                className="w-20 h-20 sm:w-24 sm:h-24"
+              />
+            </div>
             <h1 className="text-4xl sm:text-6xl font-extrabold text-slate-900 tracking-tight mb-6">
-              Welcome to <span className="text-gradient-tri">OpenLand</span>
+              Welcome to <span className="text-gradient-tri">Open Source</span>
             </h1>
             <p className="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto">
               Our playground for open source contributions. Exploring code,

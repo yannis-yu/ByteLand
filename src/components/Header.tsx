@@ -27,7 +27,7 @@ const PAGE_CONFIG: Record<
   },
   "/opensource": {
     title: "OpenLand",
-    icon: "/assets/images/jules-code-light.svg",
+    icon: "/assets/images/openland-icon.svg",
     color: "text-gradient-tri",
     id: "opensource",
   },
