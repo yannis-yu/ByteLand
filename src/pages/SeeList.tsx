@@ -12,15 +12,6 @@ export default function SeeList() {
       description: "Your personal movie and show tracker.",
       icon: "/assets/images/seelist-icon.svg",
     },
-    links: [
-      {
-        title: "Links",
-        items: [
-          { label: "Home", to: "/" },
-          { label: "Privacy Policy", to: "/privacy-policy" },
-        ],
-      },
-    ],
     socials: true,
   };
 

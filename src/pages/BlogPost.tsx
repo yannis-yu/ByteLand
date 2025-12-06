@@ -160,15 +160,6 @@ export default function BlogPost() {
       description: "Insights and updates from the ByteLand team.",
       icon: "/assets/images/bytelog-icon.svg",
     },
-    links: [
-      {
-        title: "Links",
-        items: [
-          { label: "Home", to: "/" },
-          { label: "Products", to: "/#products" },
-        ],
-      },
-    ],
     socials: true,
   };
 

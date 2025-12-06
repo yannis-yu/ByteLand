@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import Page from "../components/Page";
 import { FooterConfig } from "../components/Footer";
-import { projects, Project } from "../data/projects";
+import { projects, Project } from "../config/projects";
 import MarkdownRenderer from "../components/MarkdownRenderer";
 
 export default function OpenLandProject() {
@@ -75,17 +75,6 @@ export default function OpenLandProject() {
       description: "Open Source contributions from ByteLand.",
       icon: "/assets/images/logo.svg", // Using main logo for now, or could use specific icon
     },
-    links: [
-      {
-        title: "Links",
-        items: [
-          { label: "Home", to: "/" },
-          { label: "Products", to: "/#products" },
-          { label: "Open Source", to: "/opensource" },
-          { label: "About", to: "/about" },
-        ],
-      },
-    ],
     socials: true,
   };
 

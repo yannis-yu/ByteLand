@@ -14,15 +14,6 @@ const JoyDex = () => {
       icon: "/assets/images/joydex-icon.svg",
       description: "The ultimate companion for your Pokémon journey.",
     },
-    links: [
-      {
-        title: "Links",
-        items: [
-          { label: "Home", to: "/" },
-          { label: "Privacy Policy", to: "/privacy-policy" },
-        ],
-      },
-    ],
     socials: true,
     customContent: (
       <div className="text-center text-gray-500 text-sm mt-8 pt-8 border-t border-gray-200">

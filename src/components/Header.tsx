@@ -2,58 +2,12 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useFloating, offset, shift, autoUpdate } from "@floating-ui/react";
-
-const PAGE_CONFIG: Record<
-  string,
-  { title: string; icon: string; color: string; id: string }
-> = {
-  "/jules-go": {
-    title: "Jules GO",
-    icon: "/assets/images/julesgo-icon.svg",
-    color: "text-gradient-tri",
-    id: "jules-go",
-  },
-  "/seelist": {
-    title: "SeeList",
-    icon: "/assets/images/seelist-icon.svg",
-    color: "text-gradient-tri",
-    id: "seelist",
-  },
-  "/joydex": {
-    title: "JoyDex",
-    icon: "/assets/images/joydex-icon.svg",
-    color: "text-gradient-tri",
-    id: "joydex",
-  },
-  "/opensource": {
-    title: "OpenLand",
-    icon: "/assets/images/openland-icon.svg",
-    color: "text-gradient-tri",
-    id: "opensource",
-  },
-  "/blog": {
-    title: "ByteLog",
-    icon: "/assets/images/bytelog-icon.svg",
-    color: "text-gradient-tri",
-    id: "bytelog",
-  },
-  "/about": {
-    title: "About",
-    icon: "/assets/images/logo.svg",
-    color: "text-gradient-tri",
-    id: "about",
-  },
-};
+import { getPageConfig } from "../config/pages";
 
 export default function Header() {
   const location = useLocation();
   const isHome = location.pathname === "/";
-  const pageData =
-    PAGE_CONFIG[location.pathname] ||
-    (location.pathname.startsWith("/blog") ? PAGE_CONFIG["/blog"] : null) ||
-    (location.pathname.startsWith("/opensource")
-      ? PAGE_CONFIG["/opensource"]
-      : null);
+  const pageData = getPageConfig(location.pathname);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [productsDropdownOpen, setProductsDropdownOpen] = useState(false);
 
@@ -97,21 +51,40 @@ export default function Header() {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md z-50 border-b border-slate-200 pointer-events-none">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 pointer-events-auto">
+    <header
+      className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md z-50 border-b border-slate-200"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+      }}
+    >
+      <div
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 pointer-events-auto"
+        onClick={(e) => {
+          if (e.target === e.currentTarget) {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }
+        }}
+      >
         {/* LEFT SECTION */}
         <div className="flex items-center gap-2 min-w-[200px]">
           {isHome && (
             // HOME STATE: ByteLand Logo & Title
             <Link
               to="/"
-              className="flex items-center gap-2 group"
+              className="flex items-center gap-2 group cursor-pointer"
               key="home-logo"
+              onClick={(e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
             >
               <motion.div
                 layoutId="byteland-group"
                 className="flex items-center gap-2"
                 transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                whileHover={{ scale: 1.05 }}
               >
                 <img
                   src="/assets/images/logo.svg"
@@ -142,11 +115,13 @@ export default function Header() {
             {!isHome && (
               // OTHER PAGE STATE: Page Icon & Title
               <motion.div
-                className="flex items-center gap-2"
+                className="flex items-center gap-2 cursor-pointer"
                 key={`page-${pageData?.id || "unknown"}`}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0, transition: { duration: 0.15 } }}
+                whileHover={{ scale: 1.05 }}
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               >
                 {pageData && (
                   <>

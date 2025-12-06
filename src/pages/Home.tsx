@@ -12,17 +12,6 @@ export default function Home() {
       description: "Innovating for your everyday life.",
       icon: "/assets/images/logo.svg",
     },
-    links: [
-      {
-        title: "Links",
-        items: [
-          { label: "Home", to: "/" },
-          { label: "Products", href: "#products" },
-          { label: "Open Source", to: "/opensource" },
-          { label: "About", to: "/about" },
-        ],
-      },
-    ],
     socials: true,
   };
 

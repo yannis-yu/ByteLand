@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { Github, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
+import { DEFAULT_FOOTER_LINKS } from "../config/footer";
 
 export interface FooterLink {
   label: string;
@@ -84,6 +85,10 @@ export default function Footer({ config, children }: FooterProps) {
     if (!config) return null;
 
     const { variant = "grid", brand, links, socials, customContent } = config;
+    const footerLinks = (links || DEFAULT_FOOTER_LINKS) as {
+      title?: string;
+      items: FooterLink[];
+    }[];
 
     const renderVariant = () => {
       switch (variant) {
@@ -109,7 +114,7 @@ export default function Footer({ config, children }: FooterProps) {
                   )}
                 </div>
               )}
-              {links?.map((section, idx) => (
+              {footerLinks?.map((section, idx) => (
                 <div key={idx}>
                   {section.title && (
                     <h4 className="text-white font-bold text-lg mb-4">
@@ -147,7 +152,7 @@ export default function Footer({ config, children }: FooterProps) {
                   </span>
                 </div>
               )}
-              {links?.map((section, idx) => (
+              {footerLinks?.map((section, idx) => (
                 <div key={idx} className="flex gap-8 text-sm font-medium">
                   {section.items.map((link) =>
                     link.to ? (
@@ -196,7 +201,7 @@ export default function Footer({ config, children }: FooterProps) {
                   )}
                 </div>
               )}
-              {links?.map((section, idx) => (
+              {footerLinks?.map((section, idx) => (
                 <div
                   key={idx}
                   className="flex justify-center gap-8 mb-8 text-sm font-medium"

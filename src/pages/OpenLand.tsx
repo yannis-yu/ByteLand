@@ -1,16 +1,11 @@
 import { motion } from "framer-motion";
 import { Code, ChevronRight } from "lucide-react";
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Page from "../components/Page";
 import { FooterConfig } from "../components/Footer";
-import { projects } from "../data/projects";
+import { projects } from "../config/projects";
 
 export default function OpenLand() {
-  useEffect(() => {
-    document.title = "OpenLand - ByteLand Technology";
-  }, []);
-
   const footerConfig: FooterConfig = {
     variant: "grid",
     brand: {
@@ -18,17 +13,7 @@ export default function OpenLand() {
       description: "Building the future, together.",
       icon: "/assets/images/openland-icon.svg",
     },
-    links: [
-      {
-        title: "Links",
-        items: [
-          { label: "Home", to: "/" },
-          { label: "Products", to: "/#products" },
-          { label: "Open Source", to: "/opensource" },
-          { label: "About", to: "/about" },
-        ],
-      },
-    ],
+
     socials: true,
   };
 

@@ -95,16 +95,6 @@ export default function JulesGo() {
       title: "Jules GO",
       icon: "/assets/images/julesgo-icon.svg",
     },
-    links: [
-      {
-        title: "Links",
-        items: [
-          { label: "Privacy Policy", href: "#" },
-          { label: "Licenses", href: "#" },
-          { label: "Terms of Service", href: "#" },
-        ],
-      },
-    ],
     socials: true,
   };
 
