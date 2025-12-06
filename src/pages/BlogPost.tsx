@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 import { motion } from "framer-motion";
 import { Calendar, User, Loader, AlertTriangle, ArrowLeft } from "lucide-react";
 import Page from "../components/Page";
 import { FooterConfig } from "../components/Footer";
+import MarkdownRenderer from "../components/MarkdownRenderer";
 
 interface PostMetadata {
   title: string;
@@ -29,85 +28,6 @@ function stripFrontmatter(markdown: string): string {
   }
   return markdown;
 }
-
-// Add this components object to define custom styles for markdown elements
-const MarkdownComponents: object = {
-  h1: ({ ...props }) => (
-    <h1
-      className="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-12 mb-6"
-      {...props}
-    />
-  ),
-  h2: ({ ...props }) => (
-    <h2
-      className="text-2xl sm:text-3xl font-bold text-rgb-blue mt-10 mb-4 border-b border-blue-200/50 pb-3"
-      {...props}
-    />
-  ),
-  h3: ({ ...props }) => (
-    <h3
-      className="text-xl sm:text-2xl font-bold text-rgb-green mt-8 mb-4"
-      {...props}
-    />
-  ),
-  h4: ({ ...props }) => (
-    <h4
-      className="text-lg sm:text-xl font-bold text-rgb-red mt-8 mb-4"
-      {...props}
-    />
-  ),
-  p: ({ ...props }) => (
-    <p className="text-lg text-slate-700 leading-relaxed my-6" {...props} />
-  ),
-  a: ({ ...props }) => (
-    <a
-      className="text-rgb-blue font-semibold hover:underline hover:text-rgb-red transition-colors"
-      {...props}
-    />
-  ),
-  ul: ({ ...props }) => (
-    <ul className="list-disc pl-6 my-6 space-y-3" {...props} />
-  ),
-  ol: ({ ...props }) => (
-    <ol className="list-decimal pl-6 my-6 space-y-3" {...props} />
-  ),
-  li: ({ ...props }) => <li className="text-lg text-slate-700" {...props} />,
-  code: ({
-    inline,
-    className,
-    children,
-    ...props
-  }: {
-    inline?: boolean;
-    className?: string;
-    children?: React.ReactNode;
-  }) => {
-    return !inline ? (
-      // For code blocks, 'pre' wrapper will handle styling.
-      <code className={className} {...props}>
-        {children}
-      </code>
-    ) : (
-      <code
-        className="bg-slate-100 text-rgb-red font-mono text-sm px-1.5 py-1 rounded"
-        {...props}
-      >
-        {children}
-      </code>
-    );
-  },
-  pre: ({ ...props }) => (
-    <div className="bg-slate-800 rounded-lg my-6">
-      <pre className="text-white text-sm p-4 overflow-x-auto" {...props} />
-    </div>
-  ),
-  blockquote: ({ ...props }) => (
-    <blockquote
-      className="border-l-4 border-rgb-green/50 bg-rgb-green/5 p-4 my-6 text-slate-700 italic"
-      {...props}
-    />
-  ),
-};
 
 export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
@@ -222,14 +142,7 @@ export default function BlogPost() {
         </header>
 
         {/* Post Content */}
-        <div className="max-w-none">
-          <ReactMarkdown
-            remarkPlugins={[remarkGfm]}
-            components={MarkdownComponents}
-          >
-            {post.content}
-          </ReactMarkdown>
-        </div>
+        <MarkdownRenderer content={post.content} />
       </motion.article>
     );
   };
