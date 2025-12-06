@@ -1,0 +1,108 @@
+import { motion } from "framer-motion";
+import { Code, ChevronRight } from "lucide-react";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import Page from "../components/Page";
+import { FooterConfig } from "../components/Footer";
+import { projects } from "../data/projects";
+
+export default function OpenLand() {
+  useEffect(() => {
+    document.title = "OpenLand - ByteLand Technology";
+  }, []);
+
+  const footerConfig: FooterConfig = {
+    variant: "grid",
+    brand: {
+      title: "ByteLand",
+      description: "Innovating for your everyday life.",
+      icon: "/assets/images/logo.svg",
+    },
+    links: [
+      {
+        title: "Links",
+        items: [
+          { label: "Home", to: "/" },
+          { label: "Products", to: "/#products" },
+          { label: "Open Source", to: "/opensource" },
+          { label: "About", to: "/about" },
+        ],
+      },
+    ],
+    socials: true,
+  };
+
+  return (
+    <Page footerConfig={footerConfig}>
+      {/* Hero Section */}
+      <section className="relative py-20 lg:py-32 overflow-hidden bg-white">
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <h1 className="text-4xl sm:text-6xl font-extrabold text-slate-900 tracking-tight mb-6">
+              Welcome to <span className="text-gradient-tri">OpenLand</span>
+            </h1>
+            <p className="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto">
+              Our playground for open source contributions. Exploring code,
+              sharing knowledge, and building tools for the community.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Projects Grid */}
+      <section className="py-20 bg-slate-50 min-h-[50vh]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-white p-8 rounded-2xl border border-slate-200 hover:border-rgb-blue hover:shadow-lg transition-all group flex flex-col h-full relative"
+              >
+                <Link
+                  to={`/opensource/${project.id}`}
+                  className="absolute inset-0 z-10"
+                  aria-label={`View ${project.name} details`}
+                ></Link>
+
+                <div className="flex items-start justify-between mb-6 relative z-20 pointer-events-none">
+                  <div className="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center group-hover:bg-rgb-blue/10 group-hover:text-rgb-blue transition-colors">
+                    <project.icon className="w-6 h-6" />
+                  </div>
+                  {/* External link as a separate clickable area if needed, but keeping whole card clickable is better UX for "Details" */}
+                </div>
+
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-xl font-bold text-slate-900 group-hover:text-rgb-blue transition-colors">
+                    {project.name}
+                  </h3>
+                  <ChevronRight className="w-5 h-5 text-slate-300 group-hover:text-rgb-blue group-hover:translate-x-1 transition-all" />
+                </div>
+
+                <p className="text-slate-600 mb-6 flex-1">
+                  {project.description}
+                </p>
+
+                <div className="flex items-center gap-4 text-sm text-slate-500 mt-auto">
+                  <div className="flex items-center gap-1.5">
+                    <Code className="w-4 h-4" />
+                    <span>{project.language}</span>
+                  </div>
+                  {/* Optional: Add more stats if available in data */}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </Page>
+  );
+}

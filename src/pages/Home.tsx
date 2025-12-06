@@ -18,6 +18,7 @@ export default function Home() {
         items: [
           { label: "Home", to: "/" },
           { label: "Products", href: "#products" },
+          { label: "Open Source", to: "/opensource" },
           { label: "About", to: "/about" },
         ],
       },

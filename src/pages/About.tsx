@@ -31,6 +31,7 @@ export default function About() {
         items: [
           { label: "Home", to: "/" },
           { label: "Products", to: "/#products" },
+          { label: "Open Source", to: "/opensource" },
           { label: "About", to: "/about" },
         ],
       },

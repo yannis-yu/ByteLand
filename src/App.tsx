@@ -11,6 +11,8 @@ const JoyDex = lazy(() => import("./pages/JoyDex"));
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
 const About = lazy(() => import("./pages/About"));
+const OpenLand = lazy(() => import("./pages/OpenLand"));
+const OpenLandProject = lazy(() => import("./pages/OpenLandProject"));
 
 // Loading fallback component
 function PageLoader() {
@@ -38,6 +40,11 @@ function App() {
           <Route path="/joydex" element={<JoyDex />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="/opensource" element={<OpenLand />} />
+          <Route
+            path="/opensource/:projectId/*"
+            element={<OpenLandProject />}
+          />
           <Route path="/about" element={<About />} />
         </Routes>
       </Suspense>

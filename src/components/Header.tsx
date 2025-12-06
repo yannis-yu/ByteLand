@@ -25,6 +25,12 @@ const PAGE_CONFIG: Record<
     color: "text-gradient-tri",
     id: "joydex",
   },
+  "/opensource": {
+    title: "OpenLand",
+    icon: "/assets/images/jules-code-light.svg",
+    color: "text-gradient-tri",
+    id: "opensource",
+  },
   "/blog": {
     title: "ByteLog",
     icon: "/assets/images/bytelog-icon.svg",
@@ -44,7 +50,10 @@ export default function Header() {
   const isHome = location.pathname === "/";
   const pageData =
     PAGE_CONFIG[location.pathname] ||
-    (location.pathname.startsWith("/blog") ? PAGE_CONFIG["/blog"] : null);
+    (location.pathname.startsWith("/blog") ? PAGE_CONFIG["/blog"] : null) ||
+    (location.pathname.startsWith("/opensource")
+      ? PAGE_CONFIG["/opensource"]
+      : null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [productsDropdownOpen, setProductsDropdownOpen] = useState(false);
 
@@ -82,6 +91,7 @@ export default function Header() {
   ];
 
   const navLinks = [
+    { to: "/opensource", label: "Open Source" },
     { to: "/blog", label: "Blog" },
     { to: "/about", label: "About" },
   ];
