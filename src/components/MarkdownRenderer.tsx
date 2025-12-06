@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
@@ -7,7 +8,9 @@ import Mermaid from "./Mermaid";
 
 interface MarkdownRendererProps {
   content: string;
-  basePath?: string; // Base path for resolving relative image URLs
+  basePath?: string; // Base path for resolving relative image URLs (Raw content)
+  linkBasePath?: string; // Base path for resolving relative file links (Blob content)
+  routeBase?: string; // Base route for internal navigation (for .md files)
 }
 
 /**
@@ -46,8 +49,12 @@ function resolveImagePath(
   return src;
 }
 
-// Create components factory that accepts basePath
-function createMarkdownComponents(basePath?: string): object {
+// Create components factory that accepts paths
+function createMarkdownComponents(
+  basePath?: string,
+  linkBasePath?: string,
+  routeBase?: string
+): object {
   return {
     h1: ({ ...props }) => (
       <h1
@@ -76,12 +83,55 @@ function createMarkdownComponents(basePath?: string): object {
     p: ({ ...props }) => (
       <p className="text-lg text-slate-700 leading-relaxed my-6" {...props} />
     ),
-    a: ({ ...props }) => (
-      <a
-        className="text-rgb-blue font-semibold hover:underline hover:text-rgb-red transition-colors"
-        {...props}
-      />
-    ),
+    a: ({ href, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
+      let finalHref = href;
+      let target = props.target;
+
+      if (href && !href.startsWith("http") && !href.startsWith("#")) {
+        // Relative link handling
+        const isImage = /\.(png|jpg|jpeg|gif|svg|webp)$/i.test(href);
+        const isMarkdown = /\.md$/i.test(href || "");
+
+        // Remove leading ./ if present
+        let cleanPath = href.startsWith("./") ? href.substring(2) : href;
+        if (cleanPath.startsWith("/")) cleanPath = cleanPath.substring(1);
+
+        if (isImage && basePath) {
+          // Images use raw base path
+          finalHref = `${basePath}/${cleanPath}`;
+          target = "_blank";
+        } else if (isMarkdown && routeBase) {
+          // Markdown files use internal routing if enabled
+          const to = `${routeBase}/${cleanPath}`;
+          return (
+            <Link
+              to={to}
+              className="text-rgb-blue font-semibold hover:underline hover:text-rgb-red transition-colors"
+              {...(props as any)}
+            >
+              {props.children}
+            </Link>
+          );
+        } else if (linkBasePath) {
+          // Other files (like .md) use blob base path
+          finalHref = `${linkBasePath}/${cleanPath}`;
+          target = "_blank";
+        }
+      } else if (href && href.startsWith("http")) {
+        // External links always new tab
+        target = "_blank";
+      }
+
+      return (
+        <a
+          className="text-rgb-blue font-semibold hover:underline hover:text-rgb-red transition-colors"
+          href={finalHref}
+          target={target}
+          rel={target === "_blank" ? "noopener noreferrer" : undefined}
+          {...props}
+        />
+      );
+    },
     ul: ({ ...props }) => (
       <ul
         className="list-disc pl-6 my-6 space-y-3 marker:text-slate-400"
@@ -152,13 +202,34 @@ function createMarkdownComponents(basePath?: string): object {
         {...props}
       />
     ),
-    img: ({ src, ...props }: { src?: string }) => (
-      <img
-        className="max-w-full h-auto rounded-xl shadow-lg my-8 mx-auto"
-        src={resolveImagePath(src, basePath)}
-        {...props}
-      />
-    ),
+    img: ({ src, alt, ...props }: { src?: string; alt?: string }) => {
+      // Detect badge images (shields.io, badge.fury.io, etc.)
+      const isBadge =
+        src?.includes("shields.io") ||
+        src?.includes("badge.fury.io") ||
+        src?.includes("badgen.net") ||
+        src?.includes("img.shields.io");
+
+      if (isBadge) {
+        return (
+          <img
+            className="inline-block h-5 mr-1"
+            src={resolveImagePath(src, basePath)}
+            alt={alt}
+            {...props}
+          />
+        );
+      }
+
+      return (
+        <img
+          className="max-w-full h-auto rounded-xl shadow-lg my-8 mx-auto"
+          src={resolveImagePath(src, basePath)}
+          alt={alt}
+          {...props}
+        />
+      );
+    },
     table: ({ ...props }) => (
       <div className="overflow-x-auto my-8 rounded-lg border border-slate-200 shadow-sm">
         <table className="min-w-full divide-y divide-slate-200" {...props} />
@@ -190,8 +261,14 @@ function createMarkdownComponents(basePath?: string): object {
 export default function MarkdownRenderer({
   content,
   basePath,
+  linkBasePath,
+  routeBase,
 }: MarkdownRendererProps) {
-  const components = createMarkdownComponents(basePath);
+  const components = createMarkdownComponents(
+    basePath,
+    linkBasePath,
+    routeBase
+  );
 
   return (
     <div className="prose prose-lg prose-slate max-w-none">
